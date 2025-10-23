@@ -33,6 +33,13 @@ export const routes: Route[] = [
     Component: () => <h1>Users Page</h1>,
     guard: async () => true,
   },
+  {
+    path: "/404",
+    layout: MainLayout,
+    name: "404 Not Found",
+    Component: () => <Layout404Page />,
+    guard: () => true,
+  },
 ];
 
 // Fallback component (404)

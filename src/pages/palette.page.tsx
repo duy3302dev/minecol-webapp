@@ -28,20 +28,32 @@ export const PalettePage: React.FC = () => {
       createAt: new Date(),
     },
   ];
+
+  const navItemClass = "text-lg font-bold hover:text-blue-600 cursor-pointer h-10 flex items-center bg-gray-200 rounded-md p-2";
   return (
-    <div className="p-8 min-w-screen">
-      <h1 className="text-3xl font-bold mb-6">Color Palettes</h1>
-      <div className="grid grid-cols-3">
-        {palettes.map((palette, index) => (
-          <div key={index} className="mb-6">
-            <PaletteCard
-              color={palette.color}
-              like={palette.mark}
-              createdAt={palette.createAt}
-            />
-          </div>
-        ))}
-      </div>
+    <div className=" min-w-screen flex">
+      <nav className="w-1/6 bg-white">
+        <ul className="flex flex-col gap-2 p-3">
+          <li className={navItemClass}>New</li>  
+          <li className="text-lg font-bold hover:text-blue-600">Popular</li>
+          <li className="text-lg font-bold hover:text-blue-600">Colection</li>
+          <li className="text-lg font-bold hover:text-blue-600">Random</li>
+        </ul>
+      </nav>
+      <section className="pl-4 flex flex-col w-5/6">
+        <h1 className="text-3xl font-bold mb-6">Color Palettes</h1>
+        <div className="grid grid-cols-3 w-full">
+          {palettes.map((palette, index) => (
+            <div key={index} className="mb-6">
+              <PaletteCard
+                color={palette.color}
+                like={palette.mark}
+                createdAt={palette.createAt}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
