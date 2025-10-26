@@ -35,7 +35,7 @@ export function useFormStore<T extends FieldValues = any>(id: string) {
   };
 
   const submit = async () => {
-    await formRegistry.submit<T>(id);
+    await formRegistry.submit(id);
   };
 
   const trigger = async (name?: string | string[]) => {

@@ -1,121 +1,159 @@
-import { Controller } from "react-hook-form";
-import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import type { FieldConfig } from "@/types";
-import { Textarea } from "../ui/textarea";
+  Controller,
+  type ControllerFieldState,
+  type ControllerRenderProps,
+  type FieldValues,
+  type UseFormReturn,
+} from "react-hook-form";
+import { FieldTypeEnum, type FieldConfig } from "@/types";
+import {
+  CheckboxInput,
+  ColorInput,
+  MultiSelectInput,
+  MultiStringInput,
+  NumberInput,
+  RadioInput,
+  SingleSelectInput,
+  SingleStringInput,
+  SwitchInput,
+} from "../atoms/FormInput";
 
 type Props = {
   config: FieldConfig;
   register: any;
   control: any;
+  method: UseFormReturn<any>;
   index?: number;
 };
 
-export const FieldFactory = ({ config, register, control }: Props) => {
-  const {
-    name,
-    label,
-    placeholder,
-    type = "text",
-    options,
-    component: Custom,
-    onChange,
-    onBlur,
-    onTouch,
-    props,
-  } = config;
-
+export const FieldFactory = ({ config, register, control, method }: Props) => {
   // If custom component provided, use Controller wrapper
-  if (Custom) {
-    return (
-      <div className="mb-3">
-        {label && (
-          <label className="block text-sm font-medium mb-1">{label}</label>
-        )}
-        <Controller
-          name={name}
-          control={control}
-          render={({ field }) => <Custom {...field} {...props} />}
-        />
-      </div>
-    );
-  }
+  const { type, component } = config;
 
-  if (type === "select") {
-    return (
-      <div className="mb-3">
-        {label && (
-          <label className="block text-sm font-medium mb-1">{label}</label>
-        )}
-        <Controller
-          name={name}
-          control={control}
-          render={({ field }) => (
-            <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger>
-                <SelectValue placeholder={placeholder ?? "Select..."} />
-              </SelectTrigger>
-              <SelectContent>
-                {options?.map((o) => (
-                  <SelectItem key={String(o.value)} value={String(o.value)}>
-                    {o.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
+  const renderField = (
+    field: ControllerRenderProps<FieldValues, string>,
+    fieldState: ControllerFieldState
+  ) => {
+    if (component) {
+      const CustomComponent = component;
+      return (
+        <CustomComponent
+          field={config}
+          controller={field}
+          method={method}
+          error={fieldState.error}
         />
-      </div>
-    );
-  }
+      );
+    }
 
-  if (type === "textarea") {
-    return (
-      <div className="mb-3">
-        {label && (
-          <label className="block text-sm font-medium mb-1">{label}</label>
-        )}
-        <Textarea {...register(name)} placeholder={placeholder} {...props} />
-      </div>
-    );
-  }
+    switch (type) {
+      case FieldTypeEnum.TEXT:
+        return (
+          <SingleStringInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
 
-  if (type === "checkbox") {
-    return (
-      <div className="mb-3 flex items-center space-x-2">
-        <Controller
-          name={name}
-          control={control}
-          render={({ field }) => (
-            <Checkbox
-              checked={!!field.value}
-              onCheckedChange={(v) => field.onChange(v)}
-            />
-          )}
-        />
-        {label && <span className="text-sm">{label}</span>}
-      </div>
-    );
-  }
+      case FieldTypeEnum.NUMBER:
+        return (
+          <NumberInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.CHECKBOX:
+        return (
+          <CheckboxInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.RADIO:
+        return (
+          <RadioInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.SWITCH:
+        return (
+          <SwitchInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.COLOR:
+        return (
+          <ColorInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.SELECT:
+        return (
+          <SingleSelectInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.MULTISELECT:
+        return (
+          <MultiSelectInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      case FieldTypeEnum.TEXTAREA:
+        return (
+          <MultiStringInput
+            field={config}
+            controller={field}
+            method={method}
+            error={fieldState.error}
+          />
+        );
+
+      default:
+        return (
+          <div className="h-10 w-full flex items-center justify-center border border-dashed rounded-sm border-red-500 bg-red-50 text-red-600">
+            Unknown field type: {type}
+          </div>
+        );
+    }
+  };
 
   // default: simple input (text/email/number)
   return (
     <div className="mb-3">
-      {label && (
-        <label className="block text-sm font-medium mb-1">{label}</label>
-      )}
-      <Input
-        type={type}
-        {...register(name)}
-        placeholder={placeholder}
-        {...props}
+      <Controller
+        name={config.name}
+        control={control}
+        {...register(config.name)}
+        render={({ field, fieldState }) => renderField(field, fieldState)}
       />
     </div>
   );

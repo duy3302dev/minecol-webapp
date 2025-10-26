@@ -43,11 +43,11 @@ class FormRegistry {
     this.emit();
   }
 
-  async submit<T = any>(id: string) {
+  async submit(id: string) {
     const methods = this.forms.get(id);
     if (!methods) return;
     // triggers validation and onSubmit inside the form component
-    await methods.handleSubmit((data) => {
+    await methods.handleSubmit(() => {
       // default: do nothing — the actual onSubmit passed to <DynamicForm> runs too
       // but exposing this allows external submit attempt
       // If you want to intercept, you can pass custom callback here
