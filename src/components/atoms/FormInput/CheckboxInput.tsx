@@ -1,28 +1,29 @@
-import { memo } from "react";
+import { memo, type FC } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import type { FieldRendererProps } from "@/types";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
+import type { FieldRendererProps } from "@/shared/types";
 
-export const CheckboxInput = memo((props: FieldRendererProps) => {
-  const { field, controller, method, error } = props;
+export const CheckboxInput: FC<FieldRendererProps> = memo((props) => {
+  const { field, controller, error } = props;
 
   //Handle
   const handleChange = (value: boolean) => {
-    console.log("Checkbox value:", value);
     controller.onChange(value);
-    field.onChange && field.onChange(value, method);
+    field.onChange && field.onChange(value);
   };
 
   const handleTouch = () => {
-    field.onTouch && field.onTouch(controller.value, method);
+    field.onTouch && field.onTouch(controller.value);
   };
 
-  // Style classes
-  const defaultCheckboxStyles = `h-4 w-4 text-blue-600 border-gray-300 rounded`;
-  const focusStyles = `focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`;
-  const hoverStyles = `hover:border-blue-400`;
-  const errorStyles = error ? `border-red-500 focus:ring-red-500` : "";
+  // Style classes (semantic tokens)
+  const defaultCheckboxStyles = `h-4 w-4 border border-border rounded bg-input`;
+  const focusStyles = `focus:ring-2 focus:ring-ring/20 focus:border-ring`;
+  const hoverStyles = `hover:border-ring/50`;
+  const errorStyles = error
+    ? `border-destructive focus:ring-destructive/20`
+    : "";
 
   return (
     <div className="flex items-center">
@@ -40,10 +41,12 @@ export const CheckboxInput = memo((props: FieldRendererProps) => {
         onFocus={handleTouch}
       />
       {field.label && (
-        <Label className="ml-2 text-sm font-medium">{field.label}</Label>
+        <Label className="ml-2 text-sm font-medium text-foreground">
+          {field.label}
+        </Label>
       )}
       {error && (
-        <span className="text-red-400 text-xs mt-1 ml-2 font-[600]">
+        <span className="text-destructive text-xs mt-1 ml-2 font-semibold">
           {error.message}
         </span>
       )}

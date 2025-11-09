@@ -1,6 +1,6 @@
-import { memo } from "react";
+import { memo, type FC } from "react";
 import { Label } from "@/components/ui/label";
-import type { FieldRendererProps } from "@/types";
+import type { FieldRendererProps } from "@/shared/types";
 import {
   Select,
   SelectContent,
@@ -8,30 +8,34 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
-export const SingleSelectInput = memo((props: FieldRendererProps) => {
-  const { field, controller, method, error } = props;
+export const SingleSelectInput: FC<FieldRendererProps> = memo((props) => {
+  const { field, controller, error } = props;
 
   //Handles
   const handleChange = (value: string) => {
     controller.onChange(value);
-    field.onChange && field.onChange(value, method);
+    field.onChange && field.onChange(value);
   };
   const handleTouch = () => {
-    field.onTouch && field.onTouch(controller.value, method);
+    field.onTouch && field.onTouch(controller.value);
   };
 
-  // Style classes
-  const defaultSelectStyles = `w-full border border-gray-300 rounded-md shadow-sm`;
-  const focusStyles = `focus:ring focus:ring-blue-500 focus:border-blue-500`;
-  const hoverStyles = `hover:border-gray-400`;
-  const errorStyles = error ? `border-red-500 focus:ring-red-500` : "";
+  // Style classes (semantic tokens)
+  const defaultSelectStyles = `w-full border rounded-md shadow-sm transition-colors bg-input text-foreground`;
+  const focusStyles = `focus:ring focus:ring-ring/20 focus:border-ring`;
+  const hoverStyles = `hover:border-ring/50`;
+  const errorStyles = error
+    ? `border-destructive focus:ring-destructive/20`
+    : `border-border`;
 
   return (
     <div>
       {field.label && (
-        <Label className="block text-sm font-medium mb-1">{field.label}</Label>
+        <Label className="block text-sm font-medium mb-1 text-foreground">
+          {field.label}
+        </Label>
       )}
       <Select
         onValueChange={handleChange}
@@ -48,18 +52,22 @@ export const SingleSelectInput = memo((props: FieldRendererProps) => {
             field.props?.className
           )}
         >
-          <SelectValue placeholder="Select an option" />
+          <SelectValue placeholder={field.placeholder || "Select an option"} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-card">
           {field?.options?.map((option) => (
-            <SelectItem key={option.value} value={option.value as string}>
+            <SelectItem
+              key={option.value}
+              value={option.value as string}
+              className="hover:bg-accent data-[state=checked]:bg-accent/80"
+            >
               {option.label}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
       {error && (
-        <span className="text-red-400 text-xs mt-1 block font-[600]">
+        <span className="text-destructive text-xs mt-1 block font-semibold">
           {error.message}
         </span>
       )}

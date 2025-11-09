@@ -1,44 +1,47 @@
-import React, { memo } from "react";
+import React, { memo, type FC } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import type { FieldRendererProps } from "@/types";
-import { cn } from "@/lib/utils";
+import type { FieldRendererProps } from "@/shared/types";
+import { cn } from "@/shared/lib/utils";
 
-export const MultiStringInput = memo((props: FieldRendererProps) => {
-  const { field, controller, method, error } = props;
+export const MultiStringInput: FC<FieldRendererProps> = memo((props) => {
+  const { field, controller, error } = props;
 
   //Handle
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     controller.onChange(value); // Pass value, not event
-    field.onChange && field.onChange(value, method);
+    field.onChange && field.onChange(value);
   };
 
   const handleTouch = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    field.onTouch && field.onTouch(e.target.value, method);
+    field.onTouch && field.onTouch(e.target.value);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     controller.onBlur();
-    field.onBlur && field.onBlur(e.target.value, method);
+    field.onBlur && field.onBlur(e.target.value);
   };
 
   // Style classes
-  const defaultTextareaStyles = `w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm min-h-[100px]`;
-  const focusStyles = `focus:ring focus:ring-blue-500 focus:border-blue-500`;
-  const hoverStyles = `hover:border-gray-400`;
+  const defaultTextareaStyles = `w-full px-3 py-2 border rounded-md shadow-sm min-h-[100px] transition-colors bg-input text-foreground`;
+  const focusStyles = `focus:ring-2 focus:ring-ring/20 focus:border-ring`;
+  const hoverStyles = `hover:border-ring/50`;
   const errorStyles = error
-    ? `border-red-500 focus:ring-red-500 focus:border-red-500`
-    : "";
+    ? `border-destructive focus:ring-destructive/20`
+    : `border-border`;
 
   return (
     <div>
       {field.label && (
-        <Label className="block text-sm font-medium mb-1">{field.label}</Label>
+        <Label className="block text-sm font-medium mb-1 text-foreground">
+          {field.label}
+        </Label>
       )}
       <Textarea
         {...controller}
         {...field.props}
+        placeholder={field.placeholder}
         className={cn(
           defaultTextareaStyles,
           focusStyles,
@@ -51,7 +54,7 @@ export const MultiStringInput = memo((props: FieldRendererProps) => {
         onBlur={handleBlur}
       />
       {error && (
-        <span className="text-red-400 text-xs mt-1 font-[600]">
+        <span className="text-destructive text-xs mt-1 font-semibold block">
           {error.message}
         </span>
       )}

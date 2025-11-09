@@ -3,11 +3,11 @@ import type { FieldValues, UseFormReturn } from "react-hook-form";
 type Listener = () => void;
 
 class FormRegistry {
-  private forms = new Map<string, UseFormReturn<any>>();
+  private forms = new Map<string, UseFormReturn<FieldValues>>();
   private listeners = new Set<Listener>();
 
   register<T extends FieldValues>(id: string, methods: UseFormReturn<T>) {
-    this.forms.set(id, methods as UseFormReturn<any>);
+    this.forms.set(id, methods as UseFormReturn<FieldValues>);
     this.emit();
   }
 
@@ -16,18 +16,20 @@ class FormRegistry {
     this.emit();
   }
 
-  get<T extends FieldValues = any>(id: string): UseFormReturn<T> | undefined {
+  get<T extends FieldValues = FieldValues>(
+    id: string
+  ): UseFormReturn<T> | undefined {
     return this.forms.get(id) as UseFormReturn<T> | undefined;
   }
 
-  getValues<T = any>(id: string): T | undefined {
+  getValues<T extends FieldValues = FieldValues>(id: string): T | undefined {
     return this.forms.get(id)?.getValues() as T | undefined;
   }
 
-  setValue<T = any>(
+  setValue<T extends FieldValues = FieldValues>(
     id: string,
     name: keyof T | string,
-    value: any,
+    value: T[keyof T] | unknown,
     options?: {
       shouldDirty?: boolean;
       shouldTouch?: boolean;
@@ -38,7 +40,7 @@ class FormRegistry {
     this.emit();
   }
 
-  reset<T = any>(id: string, values?: Partial<T>) {
+  reset<T extends FieldValues = FieldValues>(id: string, values?: Partial<T>) {
     this.forms.get(id)?.reset(values);
     this.emit();
   }

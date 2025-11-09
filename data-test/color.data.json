@@ -1,0 +1,149 @@
+{
+    "data": [
+    {
+        "color": "red",
+        "hex": "#FF0000",
+        "like": 0
+    },
+    {
+        "color": "green",
+        "hex": "#00FF00",
+        "like": 0
+    },
+    {
+        "color": "blue",
+        "hex": "#0000FF",
+        "like": 0
+    },
+    {
+        "color": "black",
+        "hex": "#000000",
+        "like": 0
+    },
+    {
+        "color": "white",
+        "hex": "#FFFFFF",
+        "like": 0
+    },
+    {
+        "color": "yellow",
+        "hex": "#FFFF00",
+        "like": 0
+    },
+    {
+        "color": "cyan",
+        "hex": "#00FFFF",
+        "like": 0
+    },
+    {
+        "color": "magenta",
+        "hex": "#FF00FF",
+        "like": 0
+    },
+    {
+        "color": "orange",
+        "hex": "#FFA500",
+        "like": 0
+    },
+    {
+        "color": "purple",
+        "hex": "#800080",
+        "like": 0
+    },
+    {
+        "color": "pink",
+        "hex": "#FFC0CB",
+        "like": 0
+    },
+    {
+        "color": "brown",
+        "hex": "#A52A2A",
+        "like": 0
+    },
+    {
+        "color": "gray",
+        "hex": "#808080",
+        "like": 0
+    },
+    {
+        "color": "navy",
+        "hex": "#000080",
+        "like": 0
+    },
+    {
+        "color": "teal",
+        "hex": "#008080",
+        "like": 0
+    },
+    {
+        "color": "lime",
+        "hex": "#00FF00",
+        "like": 0
+    },
+    {
+        "color": "maroon",
+        "hex": "#800000",
+        "like": 0
+    },
+    {
+        "color": "olive",
+        "hex": "#808000",
+        "like": 0
+    },
+    {
+        "color": "silver",
+        "hex": "#C0C0C0",
+        "like": 0
+    },
+    {
+        "color": "gold",
+        "hex": "#FFD700",
+        "like": 0
+    },
+    {
+        "color": "indigo",
+        "hex": "#4B0082",
+        "like": 0
+    },
+    {
+        "color": "violet",
+        "hex": "#EE82EE",
+        "like": 0
+    },
+    {
+        "color": "turquoise",
+        "hex": "#40E0D0",
+        "like": 0
+    },
+    {
+        "color": "coral",
+        "hex": "#FF7F50",
+        "like": 0
+    },
+    {
+        "color": "salmon",
+        "hex": "#FA8072",
+        "like": 0
+    },
+    {
+        "color": "khaki",
+        "hex": "#F0E68C",
+        "like": 0
+    },
+    {
+        "color": "crimson",
+        "hex": "#DC143C",
+        "like": 0
+    },
+    {
+        "color": "plum",
+        "hex": "#DDA0DD",
+        "like": 0
+    },
+    {
+        "color": "beige",
+        "hex": "#F5F5DC",
+        "like": 0
+    }
+    ]
+}

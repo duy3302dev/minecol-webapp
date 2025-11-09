@@ -1,107 +1,92 @@
-import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./components/templates/layout";
 import { Layout404Page } from "./components/templates/404";
-import { PalettePage } from "./pages/palette.page";
+import { PalettePage } from "./pages/palette/palette.page";
+import TestFormPage from "./pages/test-form.page";
+import { ThemeTestPage } from "./components/templates/theme-test";
+import { ColorPage } from "./pages/color/color.page";
+import path from "path";
 
-// Extend routes type để hỗ trợ guard
-interface Route {
-  path: string;
-  layout?: React.ComponentType<any>;
-  name: string;
-  Component: React.ComponentType<any>;
-  guard?: () => boolean | Promise<boolean>;
-}
+export const routePaths = {
+  home: "/",
+  palettePopular: "/palette/popular",
+  paletteRandom: "/palette/random",
+  paletteCollections: "/palette/collections",
+  paletteGenerate: "/palette/generate",
+  colorNew: "/color/new",
+  colorRandom: "/color/random",
+  colorCollections: "/color/collections",
+  notFound: "/404",
 
-export const routes: Route[] = [
+  //Routes for testing
+  testForm: "/test",
+  themeTest: "/theme-test",
+} as const;
+
+const routeMap = [
+  { path: routePaths.home, element: <PalettePage />, layout: <MainLayout /> },
   {
-    path: "/",
-    layout: MainLayout,
-    name: "Home",
-    Component: PalettePage,
-    guard: () => true,
+    path: routePaths.palettePopular,
+    element: <PalettePage />,
+    layout: <MainLayout />,
   },
   {
-    path: "/colors",
-    layout: MainLayout,
-    name: "Colors",
-    Component: () => <h1>Colors Page</h1>,
+    path: routePaths.paletteRandom,
+    element: <PalettePage />,
+    layout: <MainLayout />,
   },
   {
-    path: "/users",
-    layout: MainLayout,
-    name: "Users",
-    Component: () => <h1>Users Page</h1>,
-    guard: async () => true,
+    path: routePaths.paletteGenerate,
+    element: <PalettePage />,
+    layout: <MainLayout />,
   },
   {
-    path: "/404",
-    layout: MainLayout,
-    name: "404 Not Found",
-    Component: () => <Layout404Page />,
-    guard: () => true,
+    path: routePaths.paletteCollections,
+    element: <PalettePage />,
+    layout: <MainLayout />,
   },
+  { path: routePaths.colorNew, element: <ColorPage />, layout: <MainLayout /> },
+  {
+    path: routePaths.colorRandom,
+    element: <ColorPage />,
+    layout: <MainLayout />,
+  },
+  {
+    path: routePaths.colorCollections,
+    element: <ColorPage />,
+    layout: <MainLayout />,
+  },
+
+  // 404 route
+  { path: routePaths.notFound, element: <Layout404Page /> },
+
+  // Test routes
+  { path: routePaths.testForm, element: <TestFormPage /> },
+  { path: routePaths.themeTest, element: <ThemeTestPage /> },
 ];
 
-// Fallback component (404)
-const FallbackComponent: React.FC = () => <Layout404Page />;
-
-// Default layout nếu route thiếu
-const DefaultLayout: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => <div className="default-layout">{children}</div>;
-
-export const PageRoutes: React.FC<{ currentPath: string }> = ({
-  currentPath,
-}) => {
-  // Nhận currentPath từ parent/app (hoặc dùng window.location)
-  const [currentRoute, setCurrentRoute] = useState<Route | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const matchRoute = async () => {
-      setIsLoading(true);
-      setError(null);
-
-      const route = routes.find((r) => r.path === currentPath) || null;
-      if (!route) {
-        setCurrentRoute(null);
-        setIsLoading(false);
-        return;
-      }
-
-      // Check guard nếu có
-      if (route.guard) {
-        try {
-          const canAccess = await route.guard();
-          if (!canAccess) {
-            setError("Access denied"); // Hoặc redirect login
-            setIsLoading(false);
-            return;
-          }
-        } catch (err) {
-          setError("Guard error");
-          setIsLoading(false);
-          return;
-        }
-      }
-
-      setCurrentRoute(route);
-      setIsLoading(false);
-    };
-
-    matchRoute();
-  }, [currentPath]);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  const LayoutComponent = currentRoute?.layout || DefaultLayout;
-  const Component = currentRoute?.Component || FallbackComponent;
-
+// Main router component
+export const AppRoutes = () => {
   return (
-    <LayoutComponent>
-      <Component />
-    </LayoutComponent>
+    <Routes>
+      {/* Dynamically generate routes from routeMap */}
+      {routeMap.map((route, index) => {
+        if (route.layout) {
+          return (
+            <Route key={index} element={route.layout}>
+              {routeMap.map(({ path, element }, idx) => (
+                <Route key={idx} path={path} element={element} />
+              ))}
+            </Route>
+          );
+        }
+        return (
+          <Route key={index} path={route?.path} element={route?.element} />
+        );
+      })}
+
+      {/* Catch all - redirect to 404 */}
+      <Route path="*" element={<Layout404Page />} />
+    </Routes>
   );
 };

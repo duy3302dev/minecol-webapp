@@ -1,17 +1,205 @@
 @import "tailwindcss";
 
-/* * {
-  margin: 0;
-  padding: 0;
+/* 
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  PROFESSIONAL BLACK & WHITE THEME SYSTEM                     ║
+  ║  Design Philosophy: Minimalist, High Contrast, Elegant      ║
+  ╚══════════════════════════════════════════════════════════════╝
+*/
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TAILWIND V4 THEME CONFIGURATION
+   Register custom colors as Tailwind utilities
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-popover-muted: hsl(var(--popover-muted));
+  --color-popover-border: hsl(var(--popover-border));
+  --color-backdrop: hsl(var(--backdrop));
+  --color-overlay: hsl(var(--overlay));
+  --color-toast: hsl(var(--toast));
+  --color-toast-foreground: hsl(var(--toast-foreground));
+  --color-chip: hsl(var(--chip));
+  --color-chip-foreground: hsl(var(--chip-foreground));
+  --color-link: hsl(var(--link));
+  --color-link-foreground: hsl(var(--link-foreground));
+}
+
+:root {
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     LIGHT THEME - Pure & Clean
+     Base: White background with black accents
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  /* Base Colors */
+  --background: 0 0% 100%; /* Pure white #FFFFFF */
+  --foreground: 0 0% 9%; /* Almost black #171717 */
+
+  /* Surface Colors */
+  --card: 0 0% 99%; /* Off-white for cards #FCFCFC */
+  --card-foreground: 0 0% 9%; /* Almost black */
+  --popover: 0 0% 100%; /* Pure white */
+  --popover-foreground: 0 0% 9%; /* Almost black */
+
+  /* Primary - Black as primary color */
+  --primary: 0 0% 9%; /* Almost black #171717 */
+  --primary-foreground: 0 0% 98%; /* Off-white #FAFAFA */
+
+  /* Secondary - Subtle gray for secondary actions */
+  --secondary: 0 0% 94%; /* Lighter gray #F0F0F0 */
+  --secondary-foreground: 0 0% 9%; /* Almost black */
+
+  /* Muted - For subtle elements and disabled states */
+  --muted: 0 0% 97%; /* Very light gray #F7F7F7 */
+  --muted-foreground: 0 0% 45%; /* Medium gray #737373 */
+
+  /* Accent - Slate gray for highlights and hover states */
+  --accent: 0 0% 92%; /* Light slate #EBEBEB */
+  --accent-foreground: 0 0% 9%; /* Almost black */
+
+  /* Destructive - Red for errors */
+  --destructive: 0 84% 60%; /* Red #EF4444 */
+  --destructive-foreground: 0 0% 98%; /* Off-white */
+
+  /* Success - Green for positive actions */
+  --success: 142 76% 36%; /* Green #22C55E */
+  --success-foreground: 0 0% 98%; /* Off-white */
+
+  /* Warning - Amber for caution */
+  --warning: 38 92% 50%; /* Amber #F59E0B */
+  --warning-foreground: 0 0% 9%; /* Almost black */
+
+  /* Info - Blue for informational messages */
+  --info: 199 89% 48%; /* Blue #0EA5E9 */
+  --info-foreground: 0 0% 98%; /* Off-white */
+
+  /* Borders & Inputs - Enhanced contrast */
+  --border: 0 0% 88%; /* Medium light border #E0E0E0 */
+  --input: 0 0% 98%; /* Very light gray bg for inputs #FAFAFA */
+  --ring: 0 0% 20%; /* Dark gray focus ring #333333 */
+
+  /* Popover / Overlay / Toast / Chip / Link tokens */
+  --popover-muted: 0 0% 99%; /* Very light popover bg */
+  --popover-border: 0 0% 88%; /* Match border */
+  --backdrop: 0 0% 0%; /* Backdrop color for modals/overlays */
+  --overlay: 0 0% 0%; /* Overlay darker shade */
+  --toast: 0 0% 100%; /* Toast background */
+  --toast-foreground: 0 0% 9%; /* Toast text */
+  --chip: 0 0% 96%; /* Small token background */
+  --chip-foreground: 0 0% 9%; /* Small token text */
+  --link: 0 0% 9%; /* Link color - use primary */
+  --link-foreground: 0 0% 98%; /* Link text on primary */
+
+  /* Border Radius */
+  --radius: 0.5rem; /* 8px */
+}
+
+.dark {
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     DARK THEME - Sophisticated & Modern
+     Base: True black background with white accents
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  /* Base Colors */
+  --background: 0 0% 3%; /* Near black #080808 */
+  --foreground: 0 0% 98%; /* Off-white #FAFAFA */
+
+  /* Surface Colors */
+  --card: 0 0% 8%; /* Very dark gray #141414 */
+  --card-foreground: 0 0% 98%; /* Off-white */
+  --popover: 0 0% 8%; /* Very dark gray */
+  --popover-foreground: 0 0% 98%; /* Off-white */
+
+  /* Primary - White as primary color */
+  --primary: 0 0% 98%; /* Off-white #FAFAFA */
+  --primary-foreground: 0 0% 9%; /* Almost black */
+
+  /* Secondary - Dark surface for secondary actions */
+  --secondary: 0 0% 18%; /* Dark charcoal #2E2E2E */
+  --secondary-foreground: 0 0% 98%; /* Off-white */
+
+  /* Muted - For subtle elements and disabled states */
+  --muted: 0 0% 12%; /* Very dark gray #1F1F1F */
+  --muted-foreground: 0 0% 64%; /* Light gray #A3A3A3 */
+
+  /* Accent - Lighter gray for highlights and hover states */
+  --accent: 0 0% 22%; /* Medium dark gray #383838 */
+  --accent-foreground: 0 0% 98%; /* Off-white */
+
+  /* Destructive - Softer red for dark mode */
+  --destructive: 0 72% 51%; /* Red #DC2626 */
+  --destructive-foreground: 0 0% 98%; /* Off-white */
+
+  /* Success - Softer green for dark mode */
+  --success: 142 71% 45%; /* Green #16A34A */
+  --success-foreground: 0 0% 98%; /* Off-white */
+
+  /* Warning - Amber for caution */
+  --warning: 38 92% 50%; /* Amber #F59E0B */
+  --warning-foreground: 0 0% 9%; /* Almost black */
+
+  /* Info - Blue for informational messages */
+  --info: 199 89% 48%; /* Blue #0EA5E9 */
+  --info-foreground: 0 0% 98%; /* Off-white */
+
+  /* Borders & Inputs - Enhanced contrast for dark mode */
+  --border: 0 0% 24%; /* Medium dark border #3D3D3D */
+  --input: 0 0% 12%; /* Dark gray bg for inputs #1F1F1F */
+  --ring: 0 0% 80%; /* Light gray focus ring #CCCCCC */
+
+  /* Popover / Overlay / Toast / Chip / Link tokens for dark */
+  --popover-muted: 0 0% 12%; /* Very dark popover bg */
+  --popover-border: 0 0% 24%; /* Match dark border */
+  --backdrop: 0 0% 0%; /* Backdrop color for modals/overlays */
+  --overlay: 0 0% 0%; /* Overlay darker shade */
+  --toast: 0 0% 8%; /* Toast background in dark */
+  --toast-foreground: 0 0% 98%; /* Toast text */
+  --chip: 0 0% 14%; /* Small token background */
+  --chip-foreground: 0 0% 98%; /* Small token text */
+  --link: 0 0% 98%; /* Link color - light in dark mode */
+  --link-foreground: 0 0% 9%; /* Link text on primary */
+}
+
+* {
+  border-color: hsl(var(--border));
   box-sizing: border-box;
-} */
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,14 +209,68 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-input {
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GLOBAL INPUT STYLES
+   Enhanced focus states and transitions
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+input,
+textarea,
+select {
   outline: none;
-
-  @apply focus:outline-none focus:ring  focus:ring-blue-100 focus:border-blue-300;
+  background-color: hsl(var(--input));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+  transition: all 0.2s ease-in-out;
 }
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: hsl(var(--ring) / 0.5);
+  background-color: hsl(var(--accent) / 0.3);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  background-color: hsl(var(--background));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.15);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: hsl(var(--muted));
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.6;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.4;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TAILWIND V4 DARK MODE VARIANT
+   Enable dark: prefix for all utilities
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@variant dark (&:where(.dark, .dark *));

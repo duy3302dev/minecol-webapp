@@ -1,47 +1,37 @@
-import { useState } from "react";
+import { useCopy } from "@/hooks/useCopy";
+import { useState, type FC } from "react";
 
 type PaletteSwatchProps = {
-  color: string[];
+  colors: string[];
 };
 
-export const PaletteSwatch: React.FC<PaletteSwatchProps> = (
-  props: PaletteSwatchProps
-) => {
-  const { color } = props;
+export const PaletteSwatch: FC<PaletteSwatchProps> = (props) => {
+  const { colors } = props;
+
+  const { copyToClipboard } = useCopy();
 
   const [hoveredColor, setHoveredColor] = useState<string | null>(null);
   let isHovered = (col: string) => hoveredColor === col;
 
-  const handleCopy = (color: string) => {
-    navigator.clipboard
-      .writeText(color)
-      .then(() => {
-        alert(`Copied ${color} to clipboard!`);
-      })
-      .catch((err) => {
-        console.error("Failed to copy color:", err);
-      });
-  };
-
   return (
-    <div className="rounded-lg overflow-hidden shadow-gray-400 max-w-80 max-h-80 h-80 w-80">
-      <div className="h-80">
-        {color.map((col, index) => (
+    <div className="rounded-lg overflow-hidden shadow-sm max-w-70 max-h-70 h-70 w-70 border border-border">
+      <div className="h-70">
+        {colors.map((col: string, index) => (
           <div
             key={index}
             className="relative"
             style={{
               backgroundColor: col,
-              height: `${320 / color.length}px`,
+              height: `${280 / colors.length}px`,
             }}
             onMouseEnter={() => setHoveredColor(col)}
             onMouseLeave={() => {
               setHoveredColor("");
             }}
-            onClick={() => handleCopy(col)}
+            onClick={() => copyToClipboard(col)}
           >
             {isHovered(col) && (
-              <span className="absolute text-white text-sm bg-gray-400 opacity-90 px-1 rounded-tr-md bottom-0 left-0">
+              <span className="absolute text-card-foreground text-sm bg-muted opacity-90 px-1 rounded-tr-md bottom-0 left-0  cursor-pointer">
                 {col}
               </span>
             )}

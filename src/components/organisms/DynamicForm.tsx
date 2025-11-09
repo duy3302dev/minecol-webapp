@@ -1,24 +1,23 @@
-// src/components/DynamicForm.tsx
 import { useEffect, useMemo } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { AnyZod, FormConfig } from "@/types";
-import formRegistry from "@/lib/form/formRegistry";
 import { FieldFactory } from "../molecules/FieldFactory";
 import { Button } from "../ui/button";
-import { FieldTypeEnum } from "@/types";
+import formRegistry from "@/shared/lib/form/formRegistry";
+import type { AnyZod, FormConfig } from "@/shared/types";
+import { FieldTypeEnum } from "@/shared/types";
 
 type Props<T extends AnyZod> = {
   id: string;
   schema: T;
   config: FormConfig;
-  onSubmit?: (values: any) => void;
-  defaultValues?: Partial<any>;
+  onSubmit?: (values: Record<string, unknown>) => void;
+  defaultValues?: Partial<Record<string, unknown>>;
   className?: string;
 };
 
 // Helper function to get default value based on field type
-const getDefaultValueForField = (field: FormConfig[number]): any => {
+const getDefaultValueForField = (field: FormConfig[number]): unknown => {
   if (field.defaultValue !== undefined) {
     return field.defaultValue;
   }
@@ -67,7 +66,7 @@ export function DynamicForm<T extends AnyZod>({
     mode: "onChange",
   });
 
-  const { handleSubmit, control, register, watch } = methods;
+  const { handleSubmit, control, watch } = methods;
 
   useEffect(() => {
     // register instance in registry
@@ -104,13 +103,7 @@ export function DynamicForm<T extends AnyZod>({
         onSubmit={handleSubmit(handleFormSubmit, handleFormError)}
       >
         {config.map((field) => (
-          <FieldFactory
-            key={field.name}
-            config={field}
-            register={register}
-            control={control}
-            method={methods}
-          />
+          <FieldFactory key={field.name} config={field} />
         ))}
         {onSubmit && (
           <Button type="submit" className="mt-4 w-full">

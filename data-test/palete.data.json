@@ -1,0 +1,272 @@
+[
+    {
+        "id": "1",
+        "name": "Ocean Breeze",
+        "colors": ["#0077BE", "#00A8E8", "#00C9FF", "#84E8F4", "#C4F4FE"],
+        "category": "Blue",
+        "createdAt": "2024-01-15T10:30:00Z",
+        "likes": 1250,
+        "isUserAdded": false
+    },
+    {
+        "id": "2",
+        "name": "Sunset Vibes",
+        "colors": ["#FF6B6B", "#FFA07A", "#FFD93D", "#F9A825", "#FF5722"],
+        "category": "Warm",
+        "createdAt": "2024-01-20T14:20:00Z",
+        "likes": 2340,
+        "isUserAdded": false
+    },
+    {
+        "id": "3",
+        "name": "Forest Dawn",
+        "colors": ["#2D5016", "#4A7C2C", "#6BA547", "#8BC34A", "#AED581"],
+        "category": "Green",
+        "createdAt": "2024-01-22T09:15:00Z",
+        "likes": 890,
+        "isUserAdded": false
+    },
+    {
+        "id": "4",
+        "name": "Royal Purple",
+        "colors": ["#4A148C", "#6A1B9A", "#8E24AA", "#AB47BC", "#CE93D8"],
+        "category": "Purple",
+        "createdAt": "2024-01-25T16:45:00Z",
+        "likes": 1567,
+        "isUserAdded": false
+    },
+    {
+        "id": "5",
+        "name": "Monochrome Classic",
+        "colors": ["#000000", "#424242", "#757575", "#BDBDBD", "#FFFFFF"],
+        "category": "Neutral",
+        "createdAt": "2024-02-01T11:00:00Z",
+        "likes": 3200,
+        "isUserAdded": false
+    },
+    {
+        "id": "6",
+        "name": "Cotton Candy",
+        "colors": ["#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFC9", "#BAE1FF"],
+        "category": "Pastel",
+        "createdAt": "2024-02-03T13:30:00Z",
+        "likes": 1890,
+        "isUserAdded": false
+    },
+    {
+        "id": "7",
+        "name": "Cyberpunk Neon",
+        "colors": ["#FF006E", "#FB5607", "#FFBE0B", "#8338EC", "#3A86FF"],
+        "category": "Vibrant",
+        "createdAt": "2024-02-05T15:20:00Z",
+        "likes": 2750,
+        "isUserAdded": false
+    },
+    {
+        "id": "8",
+        "name": "Earth Tones",
+        "colors": ["#8B4513", "#A0522D", "#CD853F", "#DEB887", "#F5DEB3"],
+        "category": "Brown",
+        "createdAt": "2024-02-08T10:10:00Z",
+        "likes": 1120,
+        "isUserAdded": false
+    },
+    {
+        "id": "9",
+        "name": "Mint Fresh",
+        "colors": ["#00B8A9", "#00C2A8", "#00E5CC", "#7FFFD4", "#B2FFEC"],
+        "category": "Green",
+        "createdAt": "2024-02-10T12:40:00Z",
+        "likes": 1450,
+        "isUserAdded": false
+    },
+    {
+        "id": "10",
+        "name": "Cherry Blossom",
+        "colors": ["#FFB7C5", "#FFC0CB", "#FFCDD2", "#F8BBD0", "#FCE4EC"],
+        "category": "Pink",
+        "createdAt": "2024-02-12T14:55:00Z",
+        "likes": 2100,
+        "isUserAdded": false
+    },
+    {
+        "id": "11",
+        "name": "Deep Sea",
+        "colors": ["#001F3F", "#003D5B", "#005B7F", "#007BA7", "#0099CC"],
+        "category": "Blue",
+        "createdAt": "2024-02-15T09:25:00Z",
+        "likes": 980,
+        "isUserAdded": false
+    },
+    {
+        "id": "12",
+        "name": "Autumn Leaves",
+        "colors": ["#8B0000", "#B22222", "#CD5C5C", "#F08080", "#FFA07A"],
+        "category": "Red",
+        "createdAt": "2024-02-18T16:30:00Z",
+        "likes": 1670,
+        "isUserAdded": false
+    },
+    {
+        "id": "13",
+        "name": "Lavender Dreams",
+        "colors": ["#E6E6FA", "#D8BFD8", "#DDA0DD", "#BA55D3", "#9370DB"],
+        "category": "Purple",
+        "createdAt": "2024-02-20T11:15:00Z",
+        "likes": 1890,
+        "isUserAdded": false
+    },
+    {
+        "id": "14",
+        "name": "Tropical Paradise",
+        "colors": ["#FF6F61", "#FFD700", "#00CED1", "#32CD32", "#FF69B4"],
+        "category": "Vibrant",
+        "createdAt": "2024-02-22T13:45:00Z",
+        "likes": 2450,
+        "isUserAdded": false
+    },
+    {
+        "id": "15",
+        "name": "Vintage Rose",
+        "colors": ["#C08081", "#D4A5A5", "#E8C4C4", "#F2D7D5", "#FFF0F0"],
+        "category": "Pink",
+        "createdAt": "2024-02-25T10:20:00Z",
+        "likes": 1340,
+        "isUserAdded": false
+    },
+    {
+        "id": "16",
+        "name": "Corporate Blue",
+        "colors": ["#1A237E", "#283593", "#3949AB", "#5C6BC0", "#7986CB"],
+        "category": "Blue",
+        "createdAt": "2024-02-28T15:10:00Z",
+        "likes": 2890,
+        "isUserAdded": false
+    },
+    {
+        "id": "17",
+        "name": "Lemon Zest",
+        "colors": ["#FFEB3B", "#FFF176", "#FFF59D", "#FFF9C4", "#FFFDE7"],
+        "category": "Yellow",
+        "createdAt": "2024-03-02T12:30:00Z",
+        "likes": 1230,
+        "isUserAdded": false
+    },
+    {
+        "id": "18",
+        "name": "Midnight Blue",
+        "colors": ["#191970", "#000080", "#00008B", "#0000CD", "#4169E1"],
+        "category": "Blue",
+        "createdAt": "2024-03-05T14:20:00Z",
+        "likes": 1780,
+        "isUserAdded": false
+    },
+    {
+        "id": "19",
+        "name": "Coral Reef",
+        "colors": ["#FF7F50", "#FF8C69", "#FFA07A", "#FFB6C1", "#FFC0CB"],
+        "category": "Warm",
+        "createdAt": "2024-03-08T09:40:00Z",
+        "likes": 1560,
+        "isUserAdded": false
+    },
+    {
+        "id": "20",
+        "name": "Nordic Winter",
+        "colors": ["#ECEFF1", "#CFD8DC", "#B0BEC5", "#90A4AE", "#607D8B"],
+        "category": "Neutral",
+        "createdAt": "2024-03-10T16:15:00Z",
+        "likes": 2120,
+        "isUserAdded": false
+    },
+    {
+        "id": "21",
+        "name": "Emerald City",
+        "colors": ["#004D40", "#00695C", "#00897B", "#26A69A", "#4DB6AC"],
+        "category": "Green",
+        "createdAt": "2024-03-12T11:50:00Z",
+        "likes": 1670,
+        "isUserAdded": false
+    },
+    {
+        "id": "22",
+        "name": "Desert Sand",
+        "colors": ["#C2B280", "#D2B48C", "#DEB887", "#F4A460", "#FFDEAD"],
+        "category": "Brown",
+        "createdAt": "2024-03-15T13:25:00Z",
+        "likes": 890,
+        "isUserAdded": false
+    },
+    {
+        "id": "23",
+        "name": "Berry Blast",
+        "colors": ["#8B008B", "#9932CC", "#BA55D3", "#DA70D6", "#EE82EE"],
+        "category": "Purple",
+        "createdAt": "2024-03-18T10:35:00Z",
+        "likes": 1450,
+        "isUserAdded": false
+    },
+    {
+        "id": "24",
+        "name": "Sky Blue",
+        "colors": ["#87CEEB", "#87CEFA", "#ADD8E6", "#B0E0E6", "#E0F6FF"],
+        "category": "Blue",
+        "createdAt": "2024-03-20T15:45:00Z",
+        "likes": 1990,
+        "isUserAdded": false
+    },
+    {
+        "id": "25",
+        "name": "Fire Flame",
+        "colors": ["#8B0000", "#B22222", "#DC143C", "#FF0000", "#FF6347"],
+        "category": "Red",
+        "createdAt": "2024-03-22T12:10:00Z",
+        "likes": 2340,
+        "isUserAdded": false
+    },
+    {
+        "id": "26",
+        "name": "Ice Crystal",
+        "colors": ["#E0FFFF", "#AFEEEE", "#7FFFD4", "#40E0D0", "#00CED1"],
+        "category": "Blue",
+        "createdAt": "2024-03-25T14:30:00Z",
+        "likes": 1780,
+        "isUserAdded": false
+    },
+    {
+        "id": "27",
+        "name": "Olive Garden",
+        "colors": ["#556B2F", "#6B8E23", "#808000", "#9ACD32", "#ADFF2F"],
+        "category": "Green",
+        "createdAt": "2024-03-28T11:20:00Z",
+        "likes": 1120,
+        "isUserAdded": false
+    },
+    {
+        "id": "28",
+        "name": "Peachy Keen",
+        "colors": ["#FFDAB9", "#FFDEAD", "#FFE4B5", "#FFEFD5", "#FFF8DC"],
+        "category": "Warm",
+        "createdAt": "2024-03-30T16:55:00Z",
+        "likes": 1560,
+        "isUserAdded": false
+    },
+    {
+        "id": "29",
+        "name": "Galaxy Purple",
+        "colors": ["#2E0854", "#4B0082", "#663399", "#8A2BE2", "#9370DB"],
+        "category": "Purple",
+        "createdAt": "2024-04-02T10:40:00Z",
+        "likes": 2670,
+        "isUserAdded": false
+    },
+    {
+        "id": "30",
+        "name": "Spring Meadow",
+        "colors": ["#98D8C8", "#B2E0D4", "#C8E8E0", "#E0F4F0", "#F5FFFE"],
+        "category": "Green",
+        "createdAt": "2024-04-05T13:15:00Z",
+        "likes": 1890,
+        "isUserAdded": false
+    }
+]

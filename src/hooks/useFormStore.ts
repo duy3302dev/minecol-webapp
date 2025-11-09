@@ -1,16 +1,14 @@
-import formRegistry from "@/lib/form/formRegistry";
-import { useFormStoreCore } from "@/store/form.store";
+import formRegistry from "@/shared/lib/form/formRegistry";
+import { useFormStoreCore } from "@/shared/store/form.store";
 import type { FieldValues } from "react-hook-form";
 
 /**
  * useFormStore(id) -> reactive read of values/errors for that form ID
  * returns helpers to operate on that form instance
  */
-export function useFormStore<T extends FieldValues = any>(id: string) {
-  // subscribe to global tick; we only select tick so this hook re-runs when registry emits
+export function useFormStore<T extends FieldValues = FieldValues>(id: string) {
   const tick = useFormStoreCore((s) => s.tick);
 
-  // read live methods/values from registry (note: reading after tick ensures re-render)
   const methods = formRegistry.get<T>(id);
 
   const values = methods?.getValues() as T | undefined;
@@ -20,7 +18,7 @@ export function useFormStore<T extends FieldValues = any>(id: string) {
 
   const setValue = (
     name: keyof T | string,
-    value: any,
+    value: T[keyof T] | unknown,
     options?: {
       shouldDirty?: boolean;
       shouldTouch?: boolean;

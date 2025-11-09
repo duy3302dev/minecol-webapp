@@ -1,44 +1,53 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { FieldRendererProps } from "@/types";
-import { memo } from "react";
-import { cn } from "@/lib/utils";
+import type { FieldRendererProps } from "@/shared/types";
+import { memo, type FC } from "react";
+import { cn } from "@/shared/lib/utils";
 
-export const SingleStringInput = memo((props: FieldRendererProps) => {
-  const { field, controller, method, error } = props;
+export const SingleStringInput: FC<FieldRendererProps> = memo((props) => {
+  const { field, controller, error } = props;
 
   //Handles
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     controller.onChange(value); // Pass value, not event
-    field.onChange && field.onChange(value, method);
+    field.onChange && field.onChange(value);
   };
 
   const handleTouch = (e: React.FocusEvent<HTMLInputElement>) => {
-    field.onTouch && field.onTouch(e.target.value, method);
+    field.onTouch && field.onTouch(e.target.value);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     controller.onBlur();
-    field.onBlur && field.onBlur(e.target.value, method);
+    field.onBlur && field.onBlur(e.target.value);
   };
 
   // Style classes
-  const defaultInputStyles = `w-full px-3 py-2 border border border-gray-300 rounded-md shadow-sm`;
-  const focusStyles = `focus:border-blue-500 focus:ring-2 focus:ring-blue-100`;
-  const hoverStyles = `hover:border-gray-400`;
-  const errorStyles = error ? `border-red-500` : "";
+  const defaultInputStyles = `w-full px-3 py-2 border rounded-md shadow-sm transition-colors`;
+  const lightStyles = `bg-input text-foreground`;
+  const darkStyles = `border-border`;
+  const focusStyles = `focus:border-ring focus:ring-2 focus:ring-ring/20`;
+  const hoverStyles = `hover:border-ring/50`;
+  const errorStyles = error
+    ? `border-destructive focus:ring-destructive/20`
+    : "";
 
   return (
     <div>
       {field.label && (
-        <Label className="block text-sm font-medium mb-1">{field.label}</Label>
+        <Label className="block text-sm font-medium mb-1 text-foreground">
+          {field.label}
+        </Label>
       )}
       <Input
         {...controller}
         {...field.props}
+        placeholder={field.placeholder}
         className={cn(
           defaultInputStyles,
+          lightStyles,
+          darkStyles,
           focusStyles,
           hoverStyles,
           errorStyles,
@@ -49,7 +58,7 @@ export const SingleStringInput = memo((props: FieldRendererProps) => {
         onBlur={handleBlur}
       />
       {error && (
-        <span className="text-red-400 text-xs mt-1 font-[600]">
+        <span className="text-destructive text-xs mt-1 font-semibold block">
           {error.message}
         </span>
       )}

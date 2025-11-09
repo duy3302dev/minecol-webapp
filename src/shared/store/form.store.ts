@@ -1,5 +1,5 @@
-import formRegistry from "@/lib/form/formRegistry";
 import { create } from "zustand";
+import formRegistry from "../lib/form/formRegistry";
 
 type FormStoreState = {
   tick: number;

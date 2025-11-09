@@ -33,7 +33,7 @@ export type FieldConfig = {
   name: string;
   label?: string;
   placeholder?: string;
-  type?: FieldType;
+  type: FieldType;
   defaultValue?: any;
   options?: Option[] | MultiSelectOption[]; // for select
   component?: any; // override component (React component)
@@ -55,6 +55,5 @@ export type AnyZod = z.ZodTypeAny;
 export type FieldRendererProps = {
   field: FieldConfig;
   controller: ControllerRenderProps<any, string>;
-  method: UseFormReturn<any>;
   error?: FieldError;
 };
